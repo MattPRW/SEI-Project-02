@@ -33,6 +33,8 @@ The site is comprised of three main screens; the home screen, the restaurant ind
 
 Upon entering the site the user the Home screen will prompt the user to enter a destination in which they would like to find a restaurant. Once entered ths will trigger a drop down menu of matches to the search term, for the user to select from. The search functionality is all handled by the Zomato API, which will return a specified number of matches based on a search term passed back to it. 
 
+![Scran-home-screen](ReadMe images/Scran-home-screen.png)
+
 Once a selction has been made the user wil be taken through to restaurant index page. This page shows the top 10 rated restaurants for the location selected by the user, along with some basic information (rating out of five, location and contact details).
 
 When one of these is selected the user will be taken to the final screen of the site, which shows the detailed restaurant information along with the listings for the nearest cinema. This is ascertained by using the longitude and lattitude information that is returned by the Zomato API and passing it over to the Cinelist API.
