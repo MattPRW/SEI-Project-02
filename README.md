@@ -39,9 +39,35 @@ Upon entering the site the user the Home screen will prompt the user to enter a 
 
 ![Scran-home-screen](https://i.imgur.com/ZmTjLv9.png)
 
+The search request was handled here-
+
+```javascript
+handleSubmit(e) {
+    console.log(this.state)
+    e.preventDefault()
+    axios.get(`https://developers.zomato.com/api/v2.1/locations?query=%20${this.state.query}&count=10`, {
+      headers: { 'user-key': process.env.ZOMATO_ACCESS_TOKEN }
+    })
+      .then(res => this.setState({ data: res.data }))
+      .catch(err => console.log(err))
+```
+
 Once a selction has been made the user wil be taken through to restaurant index page. This page shows the top 10 rated restaurants for the location selected by the user, along with some basic information (rating out of five, location and contact details).
 
 ![Scran-home-screen](https://i.imgur.com/yAl3Uhq.png)
+
+The selection of a restaurant was handled with another request to the Zomato API that looked like this-
+
+```javascript
+ axios.get(`https://developers.zomato.com/api/v2.1/restaurant?res_id=${this.props.match.params.id}`, {
+      headers: { 'user-key': process.env.ZOMATO_ACCESS_TOKEN }
+    })
+      .then(res => this.setState({ restaurant: res.data }), this.getCinema())
+      .catch(err => console.log(err))
+  }
+```
+
+
 
 When one of these is selected the user will be taken to the final screen of the site, which shows the detailed restaurant information along with the listings for the nearest cinema. This is ascertained by using the longitude and lattitude information that is returned by the Zomato API and passing it over to the Cinelist API.
 
